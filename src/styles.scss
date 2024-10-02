@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+// @import 'ngx-toastr/toastr';
+
+.ant-layout {
+  background: #fff !important;
+}
+
+.anticon {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: 0.125em;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-drawer-body {
+  flex-grow: 1;
+  padding: 0;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.5715;
+  word-wrap: break-word;
+}
+
+.drawer-footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  /* color: rgba(0, 0, 0, 0.85); */
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  /* border-radius: 2px 2px 0 0; */
+  bottom: 0;
+  width: 100%;
+  padding: 5px;
+}
+
+.group-btn-drawer {
+  text-align: right;
+}
