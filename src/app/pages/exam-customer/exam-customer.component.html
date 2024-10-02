@@ -1,0 +1,45 @@
+<div nz-row style="margin-bottom: 5px">
+  <div nz-col nzSpan="24">
+    <app-button
+      [icon]="'plus'"
+      [type]="'add'"
+      [title]="'Tạo mới'"
+      (click)="addCustomer()"
+    >
+    </app-button>
+    <app-button
+    [icon]="'edit'"
+    [type]="'edit'"
+    [title]="'Chỉnh sửa'"
+    (click)="editCustomer()"
+    [isShow]="isShowBtnEdit"
+  >
+  </app-button>
+    <app-button
+      [icon]="'delete'"
+      [type]="'delete'"
+      [title]="'Xóa'"
+      (click)="deleteCustomer()"
+      [isShow]="isShowBtnDelete"
+    >
+    </app-button>
+  </div>
+</div>
+
+<app-kendo-grid
+  [urlGrid]="urlGrid"
+  [columnSettings]="column"
+  [pageSize]="10"
+  (selectionChange)="selectionChange($event)"
+  (reloadGridChange)="reloadGridChange($event)"
+  [isReload]="isReloadGrid"
+  [listColumnCostom]="listCustom"
+>
+</app-kendo-grid>
+
+<!-- template customerDate -->
+<ng-template #customerDate let-dataItem let-rowIndex="rowIndex">
+  <span>
+    {{ dataItem.Birthday | date: 'dd/MM/yyyy'}}
+  </span>
+</ng-template>

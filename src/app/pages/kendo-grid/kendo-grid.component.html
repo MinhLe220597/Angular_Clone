@@ -1,0 +1,46 @@
+<kendo-grid
+  kendoGridSelectBy="ID"
+  [(selectedKeys)]="selectedIDs"
+  [resizable]="isResize"
+  [data]="gridService | async"
+  [loading]="gridService.loading"
+  [pageSize]="state.take"
+  [skip]="state.skip"
+  [pageable]="true"
+  (pageChange)="pageChange($event)"
+  (selectionChange)="eventSeletedRow($event)"
+>
+  <kendo-grid-checkbox-column
+    [width]="46"
+    [headerClass]="{ 'text-center': true }"
+    [class]="{ 'text-center': true }"
+    [columnMenu]="false"
+    [showSelectAll]="true"
+  ></kendo-grid-checkbox-column>
+
+  <kendo-grid-column
+    *ngFor="let column of columnSettings"
+    field="{{ column.field }}"
+    title="{{ column.title }}"
+    [width]="column.width"
+    [hidden]="column.hidden"
+    [headerStyle]="{ 'font-weight': '500' }"
+    [headerClass]="'header-grid-custom'"
+  >
+    <ng-template
+      *ngIf="column.template"
+      kendoGridCellTemplate
+      let-dataItem
+      let-rowIndex="rowIndex"
+    >
+      <ng-container
+        [ngTemplateOutlet]="column.template"
+        [ngTemplateOutletContext]="{
+          $implicit: dataItem,
+          rowIndex: rowIndex
+        }"
+      >
+      </ng-container>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>

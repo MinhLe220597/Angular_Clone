@@ -1,0 +1,68 @@
+<div nz-row style="margin-bottom: 5px">
+  <div nz-col nzSpan="24">
+    <app-button
+    [icon]="'filter'"
+    [type]="'filter'"
+    [title]="'Tìm kiếm'"
+    (click)="searchProduct()"
+  >
+  </app-button>
+    <app-button
+      [icon]="'plus'"
+      [type]="'add'"
+      [title]="'Tạo mới'"
+      (click)="addProduct()"
+    >
+    </app-button>
+    <app-button
+    [icon]="'edit'"
+    [type]="'edit'"
+    [title]="'Chỉnh sửa'"
+    (click)="editProduct()"
+    [isShow]="isShowBtnEdit"
+  >
+  </app-button>
+    <app-button
+      [icon]="'delete'"
+      [type]="'delete'"
+      [title]="'Xóa'"
+      (click)="deleteProduct()"
+      [isShow]="isShowBtnDelete"
+    >
+    </app-button>
+  </div>
+</div>
+
+<app-kendo-grid
+  [urlGrid]="urlGrid"
+  [columnSettings]="columnOvertime"
+  [pageSize]="100"
+  (selectionChange)="selectionChange($event)"
+  (reloadGridChange)="reloadGridChange($event)"
+  [isReload]="isReloadGrid"
+  [objSearch]="objSearch"
+>
+</app-kendo-grid>
+
+<ng-template #drawerSearch let-data let-drawerRef="drawerRef">
+  <form nz-form [formGroup]="validateFormAddOrEdit" style="padding: 0px 15px;">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Tên sản phẩm</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <input nz-input formControlName="ProductName"/>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <div class="drawer-footer">
+    <div nz-col [nzSpan]="24" class="group-btn-drawer">
+      <app-button
+        [type]="'submit'"
+        [title]="'Tìm kiếm'"
+        [width]="120"
+        (click)="drawerRef.close()"
+      >
+      </app-button>
+    </div>
+  </div>
+</ng-template>

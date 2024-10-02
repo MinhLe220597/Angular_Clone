@@ -1,0 +1,12 @@
+<app-kendo-grid [listColumnCostom]="listCustom">
+
+</app-kendo-grid>
+
+<!-- template categoryCode -->
+<ng-template #categoryCode let-dataItem let-rowIndex="rowIndex">
+  Row: {{ rowIndex }} /
+  <strong>{{ dataItem.Code }}</strong>
+  <span class="{{ dataItem.Discontinued ? 'discontinued' : 'active' }}">
+    {{ dataItem.Discontinued ? "discontinued" : "active" }}
+  </span>
+</ng-template>

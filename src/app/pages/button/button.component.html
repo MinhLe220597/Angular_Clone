@@ -1,0 +1,12 @@
+<button
+  nz-button
+  nzType="primary"
+  [nzSize]="size"
+  class="btn-custom"
+  [ngClass]="setColorButton(type)"
+  *ngIf="isShow"
+  [ngStyle]="{'width' : getWidth()}"
+>
+  <span nz-icon [nzType]="icon"></span>
+  {{ title }}
+</button>

@@ -1,0 +1,91 @@
+<div nz-row style="margin-bottom: 5px">
+  <div nz-col nzSpan="24">
+    <app-button
+      [icon]="'filter'"
+      [type]="'filter'"
+      [title]="'Tìm kiếm'"
+      (click)="searchOrder()"
+    >
+    </app-button>
+    <app-button
+      [icon]="'plus'"
+      [type]="'add'"
+      [title]="'Tạo mới'"
+      (click)="addOrder()"
+    >
+    </app-button>
+    <app-button
+      [icon]="'edit'"
+      [type]="'edit'"
+      [title]="'Chỉnh sửa'"
+      (click)="editOrder()"
+      [isShow]="isShowBtnEdit"
+    >
+    </app-button>
+    <app-button
+      [icon]="'delete'"
+      [type]="'delete'"
+      [title]="'Xóa'"
+      (click)="deleteOrder()"
+      [isShow]="isShowBtnDelete"
+    >
+    </app-button>
+  </div>
+</div>
+
+<app-kendo-grid
+  [urlGrid]="urlGrid"
+  [columnSettings]="column"
+  [pageSize]="20"
+  (selectionChange)="selectionChange($event)"
+  (reloadGridChange)="reloadGridChange($event)"
+  [isReload]="isReloadGrid"
+  [listColumnCostom]="listCustom"
+  [objSearch]="objSearch"
+>
+</app-kendo-grid>
+
+<!-- template orderCustomer -->
+<ng-template #orderCustomer let-dataItem let-rowIndex="rowIndex">
+  <span> {{ dataItem.CustomerName }} - {{ dataItem.Email }} </span>
+</ng-template>
+
+<!-- template orderShop -->
+<ng-template #orderShop let-dataItem let-rowIndex="rowIndex">
+  <span> {{ dataItem.ShopName }} - {{ dataItem.Location }} </span>
+</ng-template>
+
+<ng-template #drawerSearch let-data let-drawerRef="drawerRef">
+  <form nz-form [formGroup]="validateFormAddOrEdit" style="padding: 0px 15px;">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Sản phẩm</nz-form-label>
+      <nz-form-control [nzSpan]="24">
+        <nz-select
+          [(ngModel)]="selectedProduct"
+          nzMode="multiple"
+          [ngModelOptions]="{standalone: true}"
+          nzAllowClear
+          nzPlaceHolder="Vui lòng chọn..."
+        >
+          <nz-option
+            *ngFor="let product of listProduct"
+            [nzValue]="product"
+            [nzLabel]="product.label"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <div class="drawer-footer">
+    <div nz-col [nzSpan]="24" class="group-btn-drawer">
+      <app-button
+        [type]="'submit'"
+        [title]="'Tìm kiếm'"
+        [width]="120"
+        (click)="drawerRef.close()"
+      >
+      </app-button>
+    </div>
+  </div>
+</ng-template>

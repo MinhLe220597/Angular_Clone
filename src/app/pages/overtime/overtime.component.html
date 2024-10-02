@@ -1,0 +1,108 @@
+<div nz-row style="margin-bottom: 5px">
+  <div nz-col nzSpan="24">
+    <app-button [icon]="'filter'" [type]="'filter'" [title]="'Tìm kiếm'">
+    </app-button>
+    <app-button [icon]="'plus'" [type]="'add'" [title]="'Đăng ký'" (click)="registerOvertime()">
+    </app-button>
+    <app-button [icon]="'send'" [type]="'sendMail'" [title]="'Gửi mail'" [isShow]="isShowBtn">
+    </app-button>
+    <app-button [icon]="'stop'" [type]="'cancel'" [title]="'Hủy'" [isShow]="isShowBtn">
+    </app-button>
+    <app-button [icon]="'delete'" [type]="'delete'" [title]="'Xóa'" [isShow]="isShowBtn">
+    </app-button>
+  </div>
+</div>
+
+<app-kendo-grid
+  [listColumnCostom]="listCustom"
+  [urlGrid]="urlGrid"
+  [columnSettings]="columnOvertime"
+  [pageSize]="10"
+  (selectionChange)="selectionChange($event)"
+>
+</app-kendo-grid>
+
+<!-- template profileInfo -->
+<ng-template #profileInfo let-dataItem let-rowIndex="rowIndex">
+  <div *ngIf="dataItem['ProfileInfo']" nz-row>
+    <div nz-col nzSpan="5" class="div-col-image">
+      <img
+        class="customer-photo"
+        [src]="photoURL(dataItem['ProfileInfo'].ImagePath)"
+      />
+    </div>
+    <div nz-col nzSpan="19">
+      <span class="profile-name">
+        {{ dataItem["ProfileInfo"].CodeEmp }} -
+        {{ dataItem["ProfileInfo"].ProfileName }}
+      </span>
+      <span class="line2-column">
+        {{ dataItem["ProfileInfo"].PositionName }}
+      </span>
+    </div>
+  </div>
+</ng-template>
+
+<!-- template workdate info -->
+<ng-template #workDateInfo let-dataItem let-rowIndex="rowIndex">
+  <div *ngIf="dataItem['DataTimeInfo']" nz-row>
+    <div class="profile-name" nz-col nzSpan="24">
+      {{ dataItem["DataTimeInfo"].WorkDate }}
+    </div>
+    <div class="line2-column" nz-col nzSpan="24">
+      <span>
+        {{ dataItem["DataTimeInfo"].ShiftName }}
+      </span>
+      <span>{{ dataItem["DataTimeInfo"].TimeShift }} </span>
+    </div>
+  </div>
+</ng-template>
+
+<!-- template registerhours info -->
+<ng-template #registerHoursInfo let-dataItem let-rowIndex="rowIndex">
+  <div *ngIf="dataItem['DurationInfo']" nz-row>
+    <div class="profile-name" nz-col nzSpan="24">
+      {{ dataItem["DurationInfo"].RegisterHours }}
+      {{ dataItem["DurationInfo"].TimeInfo }}
+    </div>
+    <div class="line2-column" nz-col nzSpan="24">
+      <span>
+        {{ dataItem["DurationInfo"].DurationName }}
+      </span>
+    </div>
+  </div>
+</ng-template>
+
+<!-- template statusInfo info -->
+<ng-template #statusInfo let-dataItem let-rowIndex="rowIndex">
+  <div *ngIf="dataItem['StatusInfo']" nz-row>
+    <div class="profile-name" nz-col nzSpan="24">
+      <nz-tag [nzColor]="setColorStatus(dataItem['StatusInfo'])">
+        {{ dataItem["StatusInfo"].StatusName }}
+      </nz-tag>
+    </div>
+    <div
+      *ngIf="
+        dataItem['StatusInfo'].Status &&
+        dataItem['StatusInfo'].Status !== 'E_SUBMIT_TEMP'
+      "
+      class="line2-column-status"
+      nz-col
+      nzSpan="24"
+    >
+      <div nz-row>
+        <div nz-colclass="div-col-image-status">
+          <img
+            class="customer-photo-status"
+            [src]="photoURL(dataItem['ProfileInfo'].ImagePath)"
+          />
+        </div>
+        <div nz-col style="padding-left: 2px">
+          <span class="status-name">
+            {{ dataItem["StatusInfo"].UserApproveName }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

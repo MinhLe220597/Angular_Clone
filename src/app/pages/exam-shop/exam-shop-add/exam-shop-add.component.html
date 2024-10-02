@@ -1,0 +1,27 @@
+<form
+  nz-form
+  [nzAutoTips]="autoTips"
+  [formGroup]="validateFormAddOrEdit"
+  (ngSubmit)="save()"
+>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" labelAlign="left" nzRequired
+      >Tên cửa hàng</nz-form-label
+    >
+    <nz-form-control [nzSpan]="14" nzValidatingTip="Validating...">
+      <input nz-input formControlName="Name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Địa chỉ</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzValidatingTip="Validating...">
+      <input nz-input formControlName="Location" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()" >Hủy</button>
+  <button nz-button nzType="primary" (click)="save()" [nzLoading]="isLoadingSave">Lưu</button>
+</div>

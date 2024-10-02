@@ -1,0 +1,27 @@
+.card-mg-top {
+  margin-top: 15px;
+}
+
+.header-grid-custom {
+  font-weight: 500;
+}
+
+th.header-grid-custom {
+  font-weight: 500;
+}
+
+.k-grid .k-table-row.k-selected > td {
+  background-color: white !important;
+}
+
+.k-grid .k-table-row.k-table-alt-row.k-selected > td {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.k-grid .k-table-tbody > .k-table-row:not(.k-detail-row):hover {
+  background-color: white !important;
+}
+
+.k-grid .k-table-tbody > .k-table-row.k-table-alt-row:not(.k-detail-row):hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
