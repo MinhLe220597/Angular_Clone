@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+    "target": "http://192.168.0.176:3003/",
+    // "target": "http://localhost:5051/",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewite": { "^/api": "" }
+  }
+}
