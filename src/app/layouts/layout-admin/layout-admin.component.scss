@@ -1,0 +1,35 @@
+nz-layout {
+  height: 100%;
+}
+.ant-layout-header {
+  padding: 0 15px;
+}
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+[nz-menu] {
+  line-height: 64px;
+}
+
+nz-breadcrumb {
+  margin: 8px 0;
+}
+
+nz-content {
+  padding: 0 15px;
+}
+
+.layout nz-content nz-breadcrumb nz-breadcrumb-item {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.inner-content {
+  // min-height: 280px;
+}
